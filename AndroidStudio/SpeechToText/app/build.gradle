@@ -35,7 +35,7 @@ task deleteOldJar(type: Delete) {
 
 //task to export content as jar
 task exportJar(type: Copy) {
-    from('build/intermediates/aar_main_jar/release/')
+    from('build/intermediates/aar_main_jar/release/syncReleaseLibJars/')
     into('release/')
     include('classes.jar')
     rename('classes.jar', 'SpeechToTextPlugin.jar')
