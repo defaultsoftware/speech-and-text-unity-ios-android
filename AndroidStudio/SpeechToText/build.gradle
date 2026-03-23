@@ -6,6 +6,7 @@ buildscript {
         agp_version1 = '8.13.0'
     }
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
         maven { url "https://maven.google.com" }

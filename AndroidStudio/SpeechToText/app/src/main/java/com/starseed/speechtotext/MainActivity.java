@@ -9,11 +9,12 @@ import android.speech.tts.TextToSpeech;
 import android.speech.RecognitionListener;
 import android.speech.tts.UtteranceProgressListener;
 import com.unity3d.player.UnityPlayer;
-import com.unity3d.player.UnityPlayerActivity;
+
 import java.util.Locale;
 import java.util.ArrayList;
+import com.google.firebase.MessagingUnityPlayerActivity;
 
-public class MainActivity extends UnityPlayerActivity
+public class MainActivity extends MessagingUnityPlayerActivity
 {
     private TextToSpeech tts;
     private SpeechRecognizer speech;
