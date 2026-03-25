@@ -8,16 +8,33 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.speech.RecognitionListener;
 import android.speech.tts.UtteranceProgressListener;
+
+import com.google.firebase.messaging.MessageForwardingService;
 import com.unity3d.player.UnityPlayer;
+import com.unity3d.player.UnityPlayerActivity;
 
 import java.util.Locale;
 import java.util.ArrayList;
 
-public class MainActivity extends com.google.firebase.MessagingUnityPlayerActivity
+
+
+public class MainActivity extends UnityPlayerActivity
 {
     private TextToSpeech tts;
     private SpeechRecognizer speech;
     private Intent intent;
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        Intent message = new Intent(this, MessageForwardingService.class);
+        message.setAction(MessageForwardingService.ACTION_REMOTE_INTENT);
+        message.putExtras(intent);
+        message.setData(intent.getData());
+        // For earlier versions of Firebase C++ SDK (< 7.1.0), use `startService`.
+        // startService(message);
+        MessageForwardingService.enqueueWork(this, message);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +52,10 @@ public class MainActivity extends com.google.firebase.MessagingUnityPlayerActivi
         }
         if (speech != null) {
             speech.destroy();
+        }
+        if (mUnityPlayer != null) {
+            mUnityPlayer.quit();
+            mUnityPlayer = null;
         }
         super.onDestroy();
     }
