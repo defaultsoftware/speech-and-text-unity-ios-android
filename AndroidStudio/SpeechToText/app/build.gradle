@@ -27,14 +27,12 @@ dependencies {
     api 'androidx.appcompat:appcompat:1.4.2'
     api 'com.google.android.material:material:1.6.1'
 
-    implementation platform('com.google.firebase:firebase-bom:34.10.0')
-    implementation 'com.google.firebase:firebase-messaging'
+    compileOnly 'com.google.firebase:firebase-messaging:25.0.1'
 
 
-    compileOnly files('libs/firebase-messaging-unity-13.9.0.aar')
+    //compileOnly files('libs/firebase-messaging-unity-13.9.0.aar')
 
     compileOnly files('libs/firebase-messaging-cpp.aar')
-    //compileOnly files('libs/MessagingUnityPlayerActivity.java')
 
 
 

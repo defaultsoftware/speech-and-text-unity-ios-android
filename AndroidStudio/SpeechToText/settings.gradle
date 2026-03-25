@@ -1,1 +1,1 @@
-include ':app', ':libs:MessagingUnityPlayerActivity.java'
+include ':app'
