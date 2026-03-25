@@ -33,6 +33,7 @@ dependencies {
     //compileOnly files('libs/firebase-messaging-unity-13.9.0.aar')
 
     compileOnly files('libs/firebase-messaging-cpp.aar')
+    //compileOnly files('java/com/google/firebase/MessagingUnityPlayerActivity.java')
 
 
 
@@ -51,6 +52,20 @@ task exportJar(type: Copy) {
     into('release/')
     include('classes.jar')
     rename('classes.jar', 'SpeechToTextPlugin.jar')
-}
 
+}
+tasks.register('exportJarMauricio', Jar) {
+    // Specifies the source of the files to be included in the JAR
+    from "build/intermediates/javac/release/classes"
+
+    // Exclude the specific class file using its relative path
+    exclude '**/MessagingUnityPlayerActivity.java'
+
+    // Optional: Define output path and name
+    archiveFileName = "SpeechToTextPlugin.jar"
+    destinationDirectory = file("${buildDir}/outputs/SpeechToTextPlugin_jar")
+
+    // Ensure other dependencies/resources are handled as needed
+    // e.g., from configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+}
 exportJar.dependsOn(deleteOldJar, build)

@@ -12,9 +12,8 @@ import com.unity3d.player.UnityPlayer;
 
 import java.util.Locale;
 import java.util.ArrayList;
-import com.google.firebase.MessagingUnityPlayerActivity;
 
-public class MainActivity extends MessagingUnityPlayerActivity
+public class MainActivity extends com.google.firebase.MessagingUnityPlayerActivity
 {
     private TextToSpeech tts;
     private SpeechRecognizer speech;
